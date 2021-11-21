@@ -22,8 +22,8 @@ func _process(p_delta: float) -> void:
 	$Camera2D.position.x = lerp($Camera2D.position.x, 24.0 * view_factor, 0.25)
 	
 	# Update particle emitters
-	var has_dust = is_on_floor() and not is_equal_approx(linear_velocity.x, 0)
-	$WalkDustEmitter.emitting = has_dust
+	var has_speed = abs(linear_velocity.x) > WALK_SPEED * 0.75
+	$WalkDustEmitter.emitting = is_on_floor() and has_speed
 	
 	# Update skin parameters
 	if not is_equal_approx(input_move, 0):
