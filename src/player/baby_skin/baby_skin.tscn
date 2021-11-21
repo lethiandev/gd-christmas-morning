@@ -1,0 +1,206 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://player/characters.png" type="Texture" id=1]
+[ext_resource path="res://player/baby_skin/baby_skin.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "jump_downards"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "jump_landing"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump_upwards"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skin/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "jump_downards"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "jump_landing"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "jump_upwards"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+advance_condition = "is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+advance_condition = "is_on_floor"
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+advance_condition = "is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+advance_condition = "is_airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+advance_condition = "is_rising"
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/jump_downards/node = SubResource( 19 )
+states/jump_downards/position = Vector2( 582, 54 )
+states/jump_landing/node = SubResource( 20 )
+states/jump_landing/position = Vector2( 582, 171 )
+states/jump_upwards/node = SubResource( 21 )
+states/jump_upwards/position = Vector2( 316, 54 )
+transitions = [ "jump_upwards", "jump_downards", SubResource( 22 ), "jump_upwards", "jump_landing", SubResource( 23 ), "jump_downards", "jump_landing", SubResource( 24 ), "jump_landing", "jump_upwards", SubResource( 25 ), "jump_downards", "jump_upwards", SubResource( 26 ) ]
+start_node = "jump_upwards"
+end_node = "jump_landing"
+graph_offset = Vector2( -13, -10 )
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+advance_condition = "is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+advance_condition = "is_standing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+advance_condition = "is_airborne"
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+advance_condition = "is_airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+advance_condition = "is_on_floor"
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/airborne/node = SubResource( 9 )
+states/airborne/position = Vector2( 505, 182 )
+states/idle/node = SubResource( 10 )
+states/idle/position = Vector2( 306, 61 )
+states/walk/node = SubResource( 11 )
+states/walk/position = Vector2( 505, 61 )
+transitions = [ "idle", "walk", SubResource( 13 ), "walk", "idle", SubResource( 14 ), "idle", "airborne", SubResource( 15 ), "walk", "airborne", SubResource( 16 ), "airborne", "idle", SubResource( 18 ) ]
+start_node = "idle"
+graph_offset = Vector2( -32, -3 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[node name="Skin" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -6 )
+hframes = 23
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 2 )
+anims/idle = SubResource( 1 )
+anims/jump_downards = SubResource( 5 )
+anims/jump_landing = SubResource( 6 )
+anims/jump_upwards = SubResource( 4 )
+anims/walk = SubResource( 3 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 7 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+parameters/conditions/is_airborne = false
+parameters/conditions/is_moving = false
+parameters/conditions/is_on_floor = false
+parameters/conditions/is_standing = false
+parameters/airborne/playback = SubResource( 12 )
+parameters/airborne/conditions/is_airborne = false
+parameters/airborne/conditions/is_falling = false
+parameters/airborne/conditions/is_on_floor = false
+parameters/airborne/conditions/is_rising = false

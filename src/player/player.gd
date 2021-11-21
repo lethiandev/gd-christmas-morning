@@ -1,0 +1,87 @@
+extends KinematicBody2D
+
+const GRAVITY = 400.0
+const ACCELERATION = 600.0
+const DECELERATION = 800.0
+const WALK_SPEED = 100.0
+const JUMP_STRENGTH = 160
+
+var input_move = 0.0
+var input_jump = false
+
+var linear_velocity = Vector2()
+
+var jumping_count = 0
+var jumping_time = 0.0
+
+var coyote_time = 0.0
+
+func _process(p_delta: float) -> void:
+	# Update camera
+	var view_factor = -1.0 if $Skin.is_flipped else 1.0
+	$Camera2D.position.x = lerp($Camera2D.position.x, 24.0 * view_factor, 0.25)
+	
+	# Update particle emitters
+	var has_dust = is_on_floor() and not is_equal_approx(linear_velocity.x, 0)
+	$WalkDustEmitter.emitting = has_dust
+	
+	# Update skin parameters
+	if not is_equal_approx(input_move, 0):
+		$Skin.is_flipped = input_move < 0
+	
+	$Skin.is_moving = not is_equal_approx(linear_velocity.x, 0)
+	$Skin.is_jumping = linear_velocity.y < 0.0
+	$Skin.is_on_floor = is_on_floor()
+
+func _physics_process(p_delta: float) -> void:
+	# Apply player input
+	input_move = Input.get_axis("move_left", "move_right")
+	input_jump = Input.is_action_just_pressed("jump")
+	
+	if not is_equal_approx(input_move, 0):
+		var accel = ACCELERATION * p_delta
+		_move_accelerate(accel * input_move)
+	elif is_on_floor():
+		var decel = DECELERATION * p_delta
+		_move_decelerate(decel)
+	
+	if is_on_floor():
+		jumping_count = 0
+		coyote_time = 0.2
+	elif coyote_time > 0.0:
+		coyote_time -= p_delta
+	
+	if input_jump:
+		jumping_time = 0.15
+	elif jumping_time > 0.0:
+		jumping_time -= p_delta
+	
+	# Jumping - Double jump
+	if coyote_time <= 0.0 and input_jump and jumping_count < 1:
+		linear_velocity.y = -JUMP_STRENGTH
+		jumping_count += 1
+	
+	# Jumping - Normal jump
+	if coyote_time > 0.0 and jumping_time > 0.0:
+		linear_velocity.y = -JUMP_STRENGTH
+		jumping_time = 0.0
+		coyote_time = 0.0
+	
+	# Update collision
+	var lv = linear_velocity
+	var snap = Vector2(0.0, 4.0) if coyote_time > 0.0 else Vector2.ZERO
+	linear_velocity = move_and_slide_with_snap(lv, snap, Vector2.UP, true)
+	
+	# Apply gravity acceleration
+	linear_velocity.y += GRAVITY * p_delta
+	linear_velocity.y = min(linear_velocity.y, GRAVITY)
+
+func _move_accelerate(p_accel: float) -> void:
+	var xflip = linear_velocity.x * sign(p_accel)
+	var xspeed = clamp(WALK_SPEED - xflip, 0, abs(p_accel))
+	linear_velocity.x += xspeed * sign(p_accel)
+
+func _move_decelerate(p_decel: float) -> void:
+	var xsign = sign(linear_velocity.x)
+	var xspeed = abs(linear_velocity.x)
+	linear_velocity.x -= min(p_decel, xspeed) * xsign
