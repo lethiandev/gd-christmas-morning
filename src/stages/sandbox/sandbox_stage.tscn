@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset/basic/basic_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tileset/basic/basic_tileset.png" type="Texture" id=3]
+[ext_resource path="res://props/crate/crate.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -92,6 +93,12 @@ playback_process_mode = 0
 playback_speed = 0.5
 anims/RESET = SubResource( 4 )
 anims/rotate = SubResource( 3 )
+
+[node name="Crate" parent="." instance=ExtResource( 4 )]
+position = Vector2( -168, -24 )
+
+[node name="Crate2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -168, -72 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -40, 0 )
