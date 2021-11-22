@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://particles/dust/dust.gdshader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/particles_anim_h_frames = 4
+shader_param/particles_anim_v_frames = 4
+shader_param/particles_anim_loop = false
