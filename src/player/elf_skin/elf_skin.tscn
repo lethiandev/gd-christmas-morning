@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://player/baby_skin/elf_skin.png" type="Texture" id=1]
-[ext_resource path="res://player/baby_skin/baby_skin.gd" type="Script" id=2]
+[ext_resource path="res://player/elf_skin/elf_skin.png" type="Texture" id=1]
+[ext_resource path="res://player/elf_skin/elf_skin.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
