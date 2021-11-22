@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://player/characters.png" type="Texture" id=1]
+[ext_resource path="res://player/baby_skin/elf_skin.png" type="Texture" id=1]
 [ext_resource path="res://player/baby_skin/baby_skin.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
@@ -178,8 +178,8 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 offset = Vector2( 0, -6 )
-hframes = 23
-vframes = 4
+hframes = 8
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

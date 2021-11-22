@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dust_particle.png-0a7450d17b6fcd9b27e96bda93a33353.stex"
+path="res://.import/elf_skin.png-9b37f6fc00cd5c09371782348566fedc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/dust_particle.png"
-dest_files=[ "res://.import/dust_particle.png-0a7450d17b6fcd9b27e96bda93a33353.stex" ]
+source_file="res://player/baby_skin/elf_skin.png"
+dest_files=[ "res://.import/elf_skin.png-9b37f6fc00cd5c09371782348566fedc.stex" ]
 
 [params]
 

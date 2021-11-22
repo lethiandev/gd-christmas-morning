@@ -23,7 +23,7 @@ func _process(p_delta: float) -> void:
 	
 	# Update particle emitters
 	var has_speed = abs(linear_velocity.x) > WALK_SPEED * 0.75
-	$WalkDustEmitter.emitting = is_on_floor() and has_speed
+	$DustEmitter.emitting = is_on_floor() and has_speed
 	
 	# Update skin parameters
 	if not is_equal_approx(input_move, 0):
