@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset/basic/basic.tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tileset/basic/basic.png" type="Texture" id=3]
+[ext_resource path="res://items/food/food_item.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -85,6 +86,7 @@ region_rect = Rect2( 160, 32, 48, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformPivot/Platform"]
 shape = SubResource( 2 )
+one_way_collision = true
 one_way_collision_margin = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformPivot"]
@@ -95,7 +97,7 @@ anims/RESET = SubResource( 4 )
 anims/rotate = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 64, -72 )
+position = Vector2( -40, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -103,3 +105,39 @@ zoom = Vector2( 0.25, 0.25 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 9.0
+
+[node name="Edibles" type="Node" parent="."]
+
+[node name="FoodItem" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( 8, -32 )
+sprite_frame = 33
+
+[node name="FoodItem2" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( 24, -32 )
+sprite_frame = 36
+
+[node name="FoodItem3" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( 40, -32 )
+sprite_frame = 49
+
+[node name="FoodItem4" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( 64, -72 )
+
+[node name="FoodItem5" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( 88, -72 )
+
+[node name="FoodItem6" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( -88, -8 )
+sprite_frame = 40
+
+[node name="FoodItem7" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( -112, -8 )
+sprite_frame = 50
+
+[node name="FoodItem8" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( -152, -32 )
+sprite_frame = 51
+
+[node name="FoodItem9" parent="Edibles" instance=ExtResource( 4 )]
+position = Vector2( -240, 0 )
+sprite_frame = 51
