@@ -15,6 +15,7 @@ var jumping_count = 0
 var jumping_time = 0.0
 
 var coyote_time = 0.0
+var hurt_time = 0.0
 
 func _process(p_delta: float) -> void:
 	# Update camera
@@ -32,11 +33,19 @@ func _process(p_delta: float) -> void:
 	$Skin.is_moving = not is_equal_approx(linear_velocity.x, 0)
 	$Skin.is_jumping = linear_velocity.y < 0.0
 	$Skin.is_on_floor = is_on_floor()
+	
+	# Update skin material
+	if hurt_time > 0.0:
+		hurt_time = max(0.0, hurt_time - p_delta)
+		$Skin.material.set_shader_param("blink_timer", hurt_time)
 
 func _physics_process(p_delta: float) -> void:
 	# Apply player input
 	input_move = Input.get_axis("move_left", "move_right")
 	input_jump = Input.is_action_just_pressed("jump")
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		hurt_time = 1.25
 	
 	if not is_equal_approx(input_move, 0):
 		var accel = ACCELERATION * p_delta
