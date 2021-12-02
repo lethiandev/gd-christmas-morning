@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/elf_skin/elf_skin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
-[ext_resource path="res://particles/dust/dust_emitter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://effects/dust/dust_emitter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/interact.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
