@@ -109,16 +109,13 @@ smoothing_speed = 9.0
 [node name="Edibles" type="Node" parent="."]
 
 [node name="FoodItem" parent="Edibles" instance=ExtResource( 4 )]
-position = Vector2( 8, -32 )
-sprite_frame = 33
+position = Vector2( -48, -40 )
 
 [node name="FoodItem2" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( 24, -32 )
-sprite_frame = 36
 
 [node name="FoodItem3" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( 40, -32 )
-sprite_frame = 49
 
 [node name="FoodItem4" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( 64, -72 )
@@ -128,16 +125,12 @@ position = Vector2( 88, -72 )
 
 [node name="FoodItem6" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( -88, -8 )
-sprite_frame = 40
 
 [node name="FoodItem7" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( -112, -8 )
-sprite_frame = 50
 
 [node name="FoodItem8" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( -152, -32 )
-sprite_frame = 51
 
 [node name="FoodItem9" parent="Edibles" instance=ExtResource( 4 )]
 position = Vector2( -240, 0 )
-sprite_frame = 51
