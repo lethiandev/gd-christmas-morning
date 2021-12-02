@@ -6,7 +6,7 @@
 [ext_resource path="res://items/food/tween.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.0
+radius = 12.0
 
 [node name="FoodItem" type="Area2D" groups=["edible", "score_point"]]
 collision_layer = 2
