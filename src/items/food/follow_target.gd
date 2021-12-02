@@ -16,15 +16,15 @@ func _physics_process(p_delta: float) -> void:
 		follow_node = null
 
 func _follow_target(p_target: Node2D) -> void:
-	var target = follow_node.global_position
+	var target = p_target.global_position
 	var from = get_parent().global_position
 	
 	# Reached the target
 	if from.distance_to(target) < 6.0:
-		emit_signal("follow_done", follow_node)
+		emit_signal("follow_done", p_target)
 	
 	# Move towards the target
-	var next_step = from.linear_interpolate(target, 0.25)
+	var next_step = from.linear_interpolate(target, 0.15)
 	get_parent().global_position = next_step
 
 func follow(p_target: Node2D) -> void:
