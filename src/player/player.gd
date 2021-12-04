@@ -30,9 +30,9 @@ func _process(p_delta: float) -> void:
 	if not is_equal_approx(input_move, 0):
 		$Skin.is_flipped = input_move < 0
 	
-	$Skin.is_moving = not is_equal_approx(linear_velocity.x, 0)
-	$Skin.is_jumping = linear_velocity.y < 0.0
 	$Skin.is_on_floor = is_on_floor()
+	$Skin.is_moving = not is_equal_approx(linear_velocity.x, 0)
+	$Skin.falling_speed = linear_velocity.y
 	
 	# Update skin material
 	if hurt_time > 0.0:
