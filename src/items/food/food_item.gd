@@ -11,4 +11,6 @@ func interact_eat(p_player: Node2D) -> void:
 	$Tween.stop_all()
 
 func _on_follow_done(p_player: Node2D):
+	if p_player and p_player.has_method("item_eat"):
+		p_player.item_eat(self)
 	queue_free()

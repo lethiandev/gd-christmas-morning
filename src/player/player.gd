@@ -96,3 +96,6 @@ func _move_decelerate(p_decel: float) -> void:
 	var xsign = sign(linear_velocity.x)
 	var xspeed = abs(linear_velocity.x)
 	linear_velocity.x -= min(p_decel, xspeed) * xsign
+
+func item_eat(p_item: Node) -> void:
+	$ChewPlayer.play()
