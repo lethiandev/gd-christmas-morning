@@ -67,11 +67,13 @@ func _physics_process(p_delta: float) -> void:
 	
 	# Jumping - Double jump
 	if coyote_time <= 0.0 and input_jump and jumping_count < 1:
+		$Skin.is_jumping = true
 		linear_velocity.y = -JUMP_STRENGTH
 		jumping_count += 1
 	
 	# Jumping - Normal jump
 	if coyote_time > 0.0 and jumping_time > 0.0:
+		$Skin.is_jumping = true
 		linear_velocity.y = -JUMP_STRENGTH
 		jumping_time = 0.0
 		coyote_time = 0.0
