@@ -268,6 +268,7 @@ random_pitch = 1.05
 
 [sub_resource type="AudioStreamRandomPitch" id=28]
 audio_stream = ExtResource( 4 )
+random_pitch = 1.08
 
 [sub_resource type="AudioStreamRandomPitch" id=30]
 audio_stream = ExtResource( 5 )
@@ -311,8 +312,7 @@ pitch_scale = 0.75
 
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 28 )
-volume_db = -10.0
-pitch_scale = 0.8
+volume_db = -4.0
 
 [node name="LandPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 30 )
