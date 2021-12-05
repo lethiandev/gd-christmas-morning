@@ -104,7 +104,7 @@ func _update_jump_action(p_delta: float) -> void:
 func _update_platform_mask(p_delta: float) -> void:
 	if Input.is_action_just_pressed("move_down"):
 		set_collision_mask_bit(2, false)
-		jumpoff_time = 0.15
+		jumpoff_time = 0.3
 	
 	if jumpoff_time > 0.0:
 		jumpoff_time = max(0, jumpoff_time - p_delta)
