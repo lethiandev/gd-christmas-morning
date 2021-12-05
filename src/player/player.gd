@@ -11,10 +11,10 @@ var input_jump = false
 
 var linear_velocity = Vector2()
 
+var coyote_time = 0.0
 var jumping_count = 0
 var jumping_time = 0.0
 
-var coyote_time = 0.0
 var jumpoff_time = 0.0
 var hurt_time = 0.0
 
