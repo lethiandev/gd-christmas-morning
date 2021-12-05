@@ -3,9 +3,9 @@ extends Node2D
 var is_flipped = false
 
 var is_on_floor = false
-var is_jumping = false
 var is_moving = false
 
+var is_jumping = false
 var falling_speed = 0.0
 
 func _process(p_delta: float) -> void:
