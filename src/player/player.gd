@@ -45,14 +45,8 @@ func _physics_process(p_delta: float) -> void:
 	input_move = Input.get_axis("move_left", "move_right")
 	input_jump = Input.is_action_just_pressed("jump")
 	
+	_update_move_action(p_delta)
 	_update_platform_mask(p_delta)
-	
-	if not is_equal_approx(input_move, 0):
-		var accel = ACCELERATION * p_delta
-		_move_accelerate(accel * input_move)
-	elif is_on_floor():
-		var decel = DECELERATION * p_delta
-		_move_decelerate(decel)
 	
 	if is_on_floor():
 		jumping_count = 0
@@ -86,6 +80,14 @@ func _physics_process(p_delta: float) -> void:
 	# Apply gravity acceleration
 	linear_velocity.y += GRAVITY * p_delta
 	linear_velocity.y = min(linear_velocity.y, GRAVITY)
+
+func _update_move_action(p_delta: float) -> void:
+	if not is_equal_approx(input_move, 0):
+		var accel = ACCELERATION * p_delta
+		_move_accelerate(accel * input_move)
+	elif is_on_floor():
+		var decel = DECELERATION * p_delta
+		_move_decelerate(decel)
 
 func _move_accelerate(p_accel: float) -> void:
 	var xflip = linear_velocity.x * sign(p_accel)
