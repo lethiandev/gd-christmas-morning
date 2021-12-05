@@ -15,6 +15,7 @@ var jumping_count = 0
 var jumping_time = 0.0
 
 var coyote_time = 0.0
+var jumpoff_time = 0.0
 var hurt_time = 0.0
 
 func _process(p_delta: float) -> void:
@@ -44,8 +45,7 @@ func _physics_process(p_delta: float) -> void:
 	input_move = Input.get_axis("move_left", "move_right")
 	input_jump = Input.is_action_just_pressed("jump")
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		hurt_time = 1.25
+	_update_platform_mask(p_delta)
 	
 	if not is_equal_approx(input_move, 0):
 		var accel = ACCELERATION * p_delta
@@ -96,6 +96,17 @@ func _move_decelerate(p_decel: float) -> void:
 	var xsign = sign(linear_velocity.x)
 	var xspeed = abs(linear_velocity.x)
 	linear_velocity.x -= min(p_decel, xspeed) * xsign
+
+func _update_platform_mask(p_delta: float) -> void:
+	if Input.is_action_just_pressed("move_down"):
+		set_collision_mask_bit(2, false)
+		jumpoff_time = 0.15
+	
+	if jumpoff_time > 0.0:
+		jumpoff_time = max(0, jumpoff_time - p_delta)
+	elif is_equal_approx(jumpoff_time, 0.0):
+		set_collision_mask_bit(2, true)
+		jumpoff_time = -1.0
 
 func item_eat(p_item: Node) -> void:
 	$ChewPlayer.play()
