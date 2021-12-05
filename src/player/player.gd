@@ -46,31 +46,8 @@ func _physics_process(p_delta: float) -> void:
 	input_jump = Input.is_action_just_pressed("jump")
 	
 	_update_move_action(p_delta)
+	_update_jump_action(p_delta)
 	_update_platform_mask(p_delta)
-	
-	if is_on_floor():
-		jumping_count = 0
-		coyote_time = 0.2
-	elif coyote_time > 0.0:
-		coyote_time -= p_delta
-	
-	if input_jump:
-		jumping_time = 0.15
-	elif jumping_time > 0.0:
-		jumping_time -= p_delta
-	
-	# Jumping - Double jump
-	if coyote_time <= 0.0 and input_jump and jumping_count < 1:
-		$Skin.is_jumping = true
-		linear_velocity.y = -JUMP_STRENGTH
-		jumping_count += 1
-	
-	# Jumping - Normal jump
-	if coyote_time > 0.0 and jumping_time > 0.0:
-		$Skin.is_jumping = true
-		linear_velocity.y = -JUMP_STRENGTH
-		jumping_time = 0.0
-		coyote_time = 0.0
 	
 	# Update collision
 	var lv = linear_velocity
@@ -98,6 +75,31 @@ func _move_decelerate(p_decel: float) -> void:
 	var xsign = sign(linear_velocity.x)
 	var xspeed = abs(linear_velocity.x)
 	linear_velocity.x -= min(p_decel, xspeed) * xsign
+
+func _update_jump_action(p_delta: float) -> void:
+	coyote_time = max(0.0, coyote_time - p_delta)
+	
+	if input_jump:
+		jumping_time = 0.15
+	elif jumping_time > 0.0:
+		jumping_time -= p_delta
+	
+	if is_on_floor():
+		jumping_count = 0
+		coyote_time = 0.2
+	
+	# Jumping - Double jump
+	if coyote_time <= 0.0 and input_jump and jumping_count < 1:
+		$Skin.is_jumping = true
+		linear_velocity.y = -JUMP_STRENGTH
+		jumping_count += 1
+	
+	# Jumping - Normal jump
+	if coyote_time > 0.0 and jumping_time > 0.0:
+		$Skin.is_jumping = true
+		linear_velocity.y = -JUMP_STRENGTH
+		jumping_time = 0.0
+		coyote_time = 0.0
 
 func _update_platform_mask(p_delta: float) -> void:
 	if Input.is_action_just_pressed("move_down"):
