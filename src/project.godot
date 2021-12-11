@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Secret Santa Game"
-run/main_scene="res://stages/sandbox/sandbox_stage.tscn"
+run/main_scene="res://stages/bedroom/bedroom_stage.tscn"
 config/icon="res://icon.png"
 
 [display]
