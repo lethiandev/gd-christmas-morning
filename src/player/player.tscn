@@ -43,3 +43,13 @@ emitting = false
 stream = SubResource( 3 )
 volume_db = -6.0
 pitch_scale = 0.9
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 10
+current = true
+zoom = Vector2( 0.25, 0.25 )
+limit_left = -160
+limit_top = -90
+limit_right = 160
+limit_bottom = 90
+editor_draw_limits = true
