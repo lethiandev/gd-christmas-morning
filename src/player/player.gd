@@ -114,3 +114,9 @@ func _update_platform_mask(p_delta: float) -> void:
 
 func item_eat(p_item: Node) -> void:
 	$ChewPlayer.play()
+
+func set_camera_limit(p_limit: Rect2) -> void:
+	$Camera2D.limit_left = p_limit.position.x
+	$Camera2D.limit_top = p_limit.position.y
+	$Camera2D.limit_right = p_limit.end.x
+	$Camera2D.limit_bottom = p_limit.end.y
