@@ -29,6 +29,7 @@ format = 1
 tile_data = PoolIntArray( -327686, 11, 0, -327685, 11, 2, -196614, 11, 0, -196613, 11, 2, -65541, 7, 1, -6, 10, 0, -5, 10, 2, -65534, 10, 0, -65533, 10, 1, -65532, 10, 2, 65529, 3, 0, 65530, 3, 1, 65531, 3, 2, 65532, 6, 0, 0, 1, 0, 1, 7, 0, 131068, 4, 0, 65537, 2, 0, 65538, 2, 2, 65539, 9, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -88, 9 )
 
 [node name="SecretArea" parent="." instance=ExtResource( 4 )]
 
