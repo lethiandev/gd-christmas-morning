@@ -51,7 +51,7 @@ func _physics_process(p_delta: float) -> void:
 	
 	# Update collision
 	var lv = linear_velocity
-	var snap = Vector2(0.0, 4.0) if coyote_time > 0.0 else Vector2.ZERO
+	var snap = Vector2(0.0, 2.0) if coyote_time > 0.0 else Vector2.ZERO
 	linear_velocity = move_and_slide_with_snap(lv, snap, Vector2.UP, true)
 	
 	# Apply gravity acceleration
@@ -102,7 +102,7 @@ func _update_jump_action(p_delta: float) -> void:
 		coyote_time = 0.0
 
 func _update_platform_mask(p_delta: float) -> void:
-	if Input.is_action_just_pressed("move_down"):
+	if Input.is_action_pressed("move_down"):
 		set_collision_mask_bit(2, false)
 		jumpoff_time = 0.3
 	
