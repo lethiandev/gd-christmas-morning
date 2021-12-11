@@ -112,13 +112,6 @@ anims/rotate = SubResource( 3 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -216, 0 )
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-zoom = Vector2( 0.25, 0.25 )
-process_mode = 0
-smoothing_enabled = true
-smoothing_speed = 9.0
-
 [node name="Edibles" type="Node" parent="."]
 
 [node name="FoodItem" parent="Edibles" instance=ExtResource( 5 )]
