@@ -1,21 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset/basic/basic.tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tileset/basic/basic.png" type="Texture" id=3]
 [ext_resource path="res://tileset/workshop/workshop.tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://items/food/food_item.tscn" type="PackedScene" id=5]
-
-[sub_resource type="Environment" id=1]
-background_mode = 4
-glow_enabled = true
-glow_levels/6 = true
-glow_intensity = 1.64
-glow_strength = 1.12
-glow_hdr_threshold = 0.24
-glow_hdr_luminance_cap = 84.45
-glow_hdr_scale = 1.69
-glow_bicubic_upscale = true
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 8 )
@@ -53,9 +42,6 @@ tracks/0/keys = {
 }
 
 [node name="SandboxStage" type="Node"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
 
 [node name="TileMap4" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
