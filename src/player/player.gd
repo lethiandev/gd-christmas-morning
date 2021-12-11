@@ -4,7 +4,7 @@ const GRAVITY = 400.0
 const ACCELERATION = 600.0
 const DECELERATION = 800.0
 const WALK_SPEED = 100.0
-const JUMP_STRENGTH = 160
+const JUMP_STRENGTH = 162
 
 var input_move = 0.0
 var input_jump = false
@@ -102,15 +102,12 @@ func _update_jump_action(p_delta: float) -> void:
 		coyote_time = 0.0
 
 func _update_platform_mask(p_delta: float) -> void:
-	if Input.is_action_pressed("move_down"):
-		set_collision_mask_bit(2, false)
-		jumpoff_time = 0.3
-	
 	if jumpoff_time > 0.0:
 		jumpoff_time = max(0, jumpoff_time - p_delta)
-	elif is_equal_approx(jumpoff_time, 0.0):
-		set_collision_mask_bit(2, true)
-		jumpoff_time = -1.0
+		set_collision_mask_bit(2, jumpoff_time == 0)
+	
+	if Input.is_action_pressed("move_down"):
+		jumpoff_time = 0.12
 
 func item_eat(p_item: Node) -> void:
 	$ChewPlayer.play()
