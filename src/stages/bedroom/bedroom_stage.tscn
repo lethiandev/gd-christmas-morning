@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset/workshop/workshop.tileset.tres" type="TileSet" id=2]
@@ -8,9 +8,12 @@
 [ext_resource path="res://props/entrance/entrance.tscn" type="PackedScene" id=6]
 [ext_resource path="res://stages/workshop/workshop_stage.tscn" type="PackedScene" id=7]
 [ext_resource path="res://stages/bedroom/intro.gd" type="Script" id=8]
+[ext_resource path="res://stages/bedroom/clock_ticking.wav" type="AudioStream" id=9]
+[ext_resource path="res://stages/bedroom/clock_alarm.wav" type="AudioStream" id=10]
 
 [sub_resource type="Animation" id=3]
 resource_name = "intro"
+length = 5.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("IntroPlayer")
 tracks/0/interp = 1
@@ -18,12 +21,30 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 4.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "fade_in"
 } ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("IntroPlayer/AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 3.98,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0, 4 )
 }
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -39,6 +60,8 @@ pause_mode = 2
 autoplay = "intro"
 anims/intro = SubResource( 3 )
 script = ExtResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="IntroPlayer"]
 
 [node name="Grounds" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
