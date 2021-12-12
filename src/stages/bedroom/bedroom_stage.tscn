@@ -63,13 +63,33 @@ tracks/2/keys = {
 "method": "set_physics_process"
 } ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Player:z_index")
+tracks/3/type = "method"
+tracks/3/path = NodePath("Player")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0, 5.5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "input_lock", true ],
+"method": "set"
+}, {
+"args": [  ],
+"method": "_jump_intro"
+}, {
+"args": [ "input_lock", false ],
+"method": "set"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0, 5.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -111,8 +131,7 @@ position = Vector2( 104, 16 )
 next_level = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -88, 17 )
-z_index = -1
+position = Vector2( -88, 15 )
 
 [node name="SecretArea" parent="." instance=ExtResource( 4 )]
 

@@ -6,6 +6,7 @@ const DECELERATION = 800.0
 const WALK_SPEED = 100.0
 const JUMP_STRENGTH = 162
 
+var input_lock = false
 var input_move = 0.0
 var input_jump = false
 
@@ -42,8 +43,8 @@ func _process(p_delta: float) -> void:
 
 func _physics_process(p_delta: float) -> void:
 	# Apply player input
-	input_move = Input.get_axis("move_left", "move_right")
-	input_jump = Input.is_action_just_pressed("jump")
+	input_move = Input.get_axis("move_left", "move_right") if not input_lock else 0.0
+	input_jump = Input.is_action_just_pressed("jump") if not input_lock else false
 	
 	_update_move_action(p_delta)
 	_update_jump_action(p_delta)
@@ -117,3 +118,9 @@ func set_camera_limit(p_limit: Rect2) -> void:
 	$Camera2D.limit_top = p_limit.position.y
 	$Camera2D.limit_right = p_limit.end.x
 	$Camera2D.limit_bottom = p_limit.end.y
+
+func _jump_intro() -> void:
+	linear_velocity.x = WALK_SPEED * 0.75
+	linear_velocity.y = -JUMP_STRENGTH
+	jumping_time = 0.0
+	coyote_time = 0.0
