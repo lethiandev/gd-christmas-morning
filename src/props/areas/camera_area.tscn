@@ -3,7 +3,6 @@
 [ext_resource path="res://props/areas/camera_area.gd" type="Script" id=1]
 
 [node name="CameraArea" type="Area2D"]
-position = Vector2( -64, 0 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
