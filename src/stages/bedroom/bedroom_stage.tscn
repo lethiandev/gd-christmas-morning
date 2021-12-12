@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset/workshop/workshop.tileset.tres" type="TileSet" id=2]
@@ -7,6 +7,24 @@
 [ext_resource path="res://props/areas/camera_area.tscn" type="PackedScene" id=5]
 [ext_resource path="res://props/entrance/entrance.tscn" type="PackedScene" id=6]
 [ext_resource path="res://stages/workshop/workshop_stage.tscn" type="PackedScene" id=7]
+[ext_resource path="res://stages/bedroom/intro.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=3]
+resource_name = "intro"
+tracks/0/type = "method"
+tracks/0/path = NodePath("IntroPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fade_in"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 128, 48 )
@@ -15,6 +33,12 @@ extents = Vector2( 128, 48 )
 extents = Vector2( 80, 40 )
 
 [node name="BedroomStage" type="Node"]
+
+[node name="IntroPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+autoplay = "intro"
+anims/intro = SubResource( 3 )
+script = ExtResource( 8 )
 
 [node name="Grounds" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
