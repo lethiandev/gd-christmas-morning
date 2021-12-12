@@ -49,3 +49,4 @@ z_index = 10
 current = true
 zoom = Vector2( 0.25, 0.25 )
 process_mode = 0
+editor_draw_screen = false
