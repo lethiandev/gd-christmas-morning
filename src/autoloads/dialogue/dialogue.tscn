@@ -1,0 +1,179 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://autoloads/dialogue/frame.png" type="Texture" id=1]
+[ext_resource path="res://autoloads/dialogue/dialogue.gd" type="Script" id=2]
+[ext_resource path="res://interface/fonts/kenney_mini.font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://autoloads/dialogue/message.gd" type="Script" id=4]
+[ext_resource path="res://autoloads/dialogue/continue_button.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "loop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 720 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "slide_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 720 ), Vector2( 0, 528 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "slide_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 528 ), Vector2( 0, 720 ) ]
+}
+
+[node name="DialogueLayer" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+script = ExtResource( 2 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 192.0
+stretch = true
+stretch_shrink = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 320, 48 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ViewportContainer/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar" type="TextureRect" parent="ViewportContainer/Viewport/HBoxContainer"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="ViewportContainer/Viewport/HBoxContainer/Avatar"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.152941, 0.12549, 0.203922, 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ViewportContainer/Viewport/HBoxContainer"]
+margin_left = 48.0
+margin_right = 320.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+texture = ExtResource( 1 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Message" type="Label" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_fonts/font = ExtResource( 3 )
+text = "Hello, world! Lorem ipsum dolor sit amet Hello, world! Lorem ipsum dolor sit amet Hello, world! Lorem ipsum dolor sit amet Hello, world! Lorem ipsum dolor sit amet Hello, world! Lorem ipsum dolor sit amet"
+autowrap = true
+clip_text = true
+percent_visible = -0.00588235
+max_lines_visible = 4
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect/Message"]
+
+[node name="Continue" type="Control" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -10.0
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect/Continue"]
+texture = ExtResource( 5 )
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect/Continue"]
+autoplay = "loop"
+anims/RESET = SubResource( 5 )
+anims/loop = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/slide_in = SubResource( 1 )
+anims/slide_out = SubResource( 3 )
