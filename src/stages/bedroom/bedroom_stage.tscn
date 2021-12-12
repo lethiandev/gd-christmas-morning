@@ -21,11 +21,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 4.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 4.5, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "fade_in"
+}, {
+"args": [  ],
+"method": "dialog_start"
 } ]
 }
 tracks/1/type = "audio"
@@ -36,7 +39,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "clips": [ {
-"end_offset": 3.98,
+"end_offset": 4.99,
 "start_offset": 0.0,
 "stream": ExtResource( 9 )
 }, {
@@ -44,7 +47,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 10 )
 } ],
-"times": PoolRealArray( 0, 4 )
+"times": PoolRealArray( 0, 3 )
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath("Player")
@@ -132,6 +135,7 @@ next_level = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -88, 15 )
+z_index = -1
 
 [node name="SecretArea" parent="." instance=ExtResource( 4 )]
 
