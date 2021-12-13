@@ -120,6 +120,7 @@ func set_camera_limit(p_limit: Rect2) -> void:
 	$Camera2D.limit_bottom = p_limit.end.y
 
 func _jump_intro() -> void:
+	$Skin/JumpPlayer.play()
 	linear_velocity.x = WALK_SPEED * 0.75
 	linear_velocity.y = -JUMP_STRENGTH
 	jumping_time = 0.0
