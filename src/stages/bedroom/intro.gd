@@ -8,5 +8,5 @@ func dialog_start() -> void:
 		{ "who": "player", "what": "Oh no! I'm late!" },
 		{ "who": "player", "what": "What I'm going to do!" },
 		{ "who": "player", "what": "Press arrows keys to move around." },
-		{ "who": "player", "what": "Press Z key to jump and X key to interact with objects." },
+		{ "who": "player", "what": "Press Z key to jump, press Z key again to double jump, press X key to interact with objects." },
 	])
