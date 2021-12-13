@@ -21,5 +21,9 @@ func interact_leave(p_other: Node) -> void:
 	$ButtonAction.hide()
 
 func interact(p_other: Node) -> void:
-	if next_level != null:
+	if not locked and next_level != null:
 		Transition.change_scene(next_level)
+	else:
+		Dialogue.dialog_start([
+			{ "who": "player", "what": "It won't budge" }
+		])
