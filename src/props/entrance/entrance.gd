@@ -13,5 +13,12 @@ func set_lock(p_locked: bool) -> void:
 func is_locked() -> bool:
 	return locked
 
+func interact_enter(p_other: Node) -> void:
+	$ButtonAction/AnimationPlayer.seek(0.0)
+	$ButtonAction.show()
+
+func interact_leave(p_other: Node) -> void:
+	$ButtonAction.hide()
+
 func interact(p_other: Node) -> void:
-	pass
+	print("Interacted!")
