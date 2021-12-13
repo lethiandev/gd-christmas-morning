@@ -1,14 +1,18 @@
 extends CanvasLayer
 
+func change_scene(p_next: PackedScene) -> void:
+	yield(fade_out(), "completed")
+	_change_scene(p_next)
+	fade_in()
+
 func fade_in() -> void:
 	get_tree().set_pause(false)
 	_tween_alpha_channel(0.0)
 
-func fade_out(p_next: PackedScene = null) -> void:
+func fade_out() -> void:
 	get_tree().set_pause(true)
 	_tween_alpha_channel(1.0)
-	yield($Tween, "tween_completed")
-	_change_scene(p_next)
+	return yield($Tween, "tween_completed")
 
 func _tween_alpha_channel(p_alpha) -> void:
 	var modulate = $ColorRect.modulate
