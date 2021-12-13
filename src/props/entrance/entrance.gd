@@ -21,4 +21,5 @@ func interact_leave(p_other: Node) -> void:
 	$ButtonAction.hide()
 
 func interact(p_other: Node) -> void:
-	print("Interacted!")
+	if next_level != null:
+		Transition.change_scene(next_level)
