@@ -22,7 +22,7 @@ var hurt_time = 0.0
 func _process(p_delta: float) -> void:
 	# Update camera
 	var view_factor = -1.0 if $Skin.is_flipped else 1.0
-	$Camera2D.position.x = lerp($Camera2D.position.x, 24.0 * view_factor, 0.25)
+	$Camera2D.position.x = lerp($Camera2D.position.x, 24.0 * view_factor, 0.12)
 	
 	# Update particle emitters
 	var has_speed = abs(linear_velocity.x) > WALK_SPEED * 0.75
