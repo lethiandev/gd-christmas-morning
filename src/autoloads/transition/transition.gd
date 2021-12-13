@@ -5,13 +5,15 @@ func change_scene(p_next: PackedScene) -> void:
 	_change_scene(p_next)
 	fade_in()
 
-func fade_in() -> void:
-	get_tree().set_pause(false)
-	_tween_alpha_channel(0.0)
+func fade_in() -> GDScriptFunctionState:
+	return _tween_fade(false, 0.0)
 
-func fade_out() -> void:
-	get_tree().set_pause(true)
-	_tween_alpha_channel(1.0)
+func fade_out() -> GDScriptFunctionState:
+	return _tween_fade(true, 1.0)
+
+func _tween_fade(p_paused: bool, p_alpha: float) -> void:
+	get_tree().set_pause(p_paused)
+	_tween_alpha_channel(p_alpha)
 	return yield($Tween, "tween_completed")
 
 func _tween_alpha_channel(p_alpha) -> void:
