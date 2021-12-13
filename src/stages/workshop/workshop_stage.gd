@@ -1,6 +1,7 @@
 extends Node
 
 func _ready():
+	Transition.fade_in()
 	yield(get_tree().create_timer(5.0, false), "timeout")
 	Dialogue.dialog_start([
 		{ "who": "player", "what": "Sorry, that's all what I've prepared so far." },
