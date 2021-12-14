@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://props/switch/switch.png" type="Texture" id=1]
+[ext_resource path="res://props/switch/switch.gd" type="Script" id=2]
+[ext_resource path="res://props/switch/switch.wav" type="AudioStream" id=3]
+[ext_resource path="res://interface/buttons/button_action.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.0
+
+[node name="Switch" type="Area2D" groups=["interactive", "switch"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="SwitchPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="ButtonAction" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 0, 24 )
+z_index = 1
