@@ -4,7 +4,7 @@ var lines = []
 onready var message_node = $ViewportContainer/Viewport/HBoxContainer/NinePatchRect/Message
 
 func dialog_start(p_dialog: Array) -> void:
-	lines = p_dialog
+	lines = p_dialog.duplicate()
 	_dialog_begin()
 
 func _dialog_begin() -> void:
