@@ -20,7 +20,7 @@ func _tween_alpha_channel(p_alpha) -> void:
 	var modulate = $ColorRect.modulate
 	var final = Color(modulate.r, modulate.g, modulate.b, p_alpha)
 	$Tween.remove_all()
-	$Tween.interpolate_property($ColorRect, "modulate", modulate, final, 0.25)
+	$Tween.interpolate_property($ColorRect, "modulate", modulate, final, 0.15)
 	$Tween.start()
 
 func _change_scene(p_scene: PackedScene) -> void:

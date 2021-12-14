@@ -22,8 +22,10 @@ func interact_leave(p_other: Node) -> void:
 
 func interact(p_other: Node) -> void:
 	if not locked and next_level != null:
+		SoundEffects.play_door_transition()
 		Transition.change_scene(next_level)
 	else:
+		SoundEffects.play_door_locked()
 		Dialogue.dialog_start([
 			{ "who": "player", "what": "It won't budge" }
 		])

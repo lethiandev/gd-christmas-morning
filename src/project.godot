@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 Postprocess="*res://autoloads/postprocess/postprocess.tscn"
 Transition="*res://autoloads/transition/transition.tscn"
 Dialogue="*res://autoloads/dialogue/dialogue.tscn"
+SoundEffects="*res://autoloads/sound_effects/sound_effects.tscn"
 
 [display]
 
