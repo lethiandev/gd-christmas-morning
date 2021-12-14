@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://autoloads/dialogue/frame.png" type="Texture" id=1]
 [ext_resource path="res://autoloads/dialogue/dialogue.gd" type="Script" id=2]
 [ext_resource path="res://interface/fonts/kenney_mini.font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://autoloads/dialogue/message.gd" type="Script" id=4]
 [ext_resource path="res://interface/buttons/button_action.tscn" type="PackedScene" id=5]
+[ext_resource path="res://autoloads/dialogue/click.wav" type="AudioStream" id=6]
+
+[sub_resource type="AudioStreamRandomPitch" id=4]
+audio_stream = ExtResource( 6 )
+random_pitch = 1.01
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -122,6 +127,11 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect/Message"]
+
+[node name="TypePlayer" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect/Message"]
+stream = SubResource( 4 )
+volume_db = -10.0
+pitch_scale = 0.9
 
 [node name="Continue" type="Control" parent="ViewportContainer/Viewport/HBoxContainer/NinePatchRect"]
 visible = false

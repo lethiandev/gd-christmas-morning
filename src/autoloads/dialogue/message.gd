@@ -18,9 +18,16 @@ func _continue_pressed() -> void:
 func tween_text(p_text: String) -> void:
 	_set_text(p_text)
 	$Tween.remove_all()
+	$Tween.interpolate_method(self, "_play_click", 0.0, text.length(), duration)
 	$Tween.interpolate_property(self, "percent_visible", 0.0, 1.0, duration)
 	$Tween.interpolate_callback(self, duration, "_set_continue_visible", true)
 	$Tween.start()
+
+func _play_click(p_value: float) -> void:
+	if p_value < text.length() and not $TypePlayer.playing:
+		var ch = text[int(p_value)]
+		if not [" ", ",", ".", "?", "!"].has(ch):
+			$TypePlayer.play()
 
 func _set_text(p_text: String) -> void:
 	duration = p_text.length() * 0.05
