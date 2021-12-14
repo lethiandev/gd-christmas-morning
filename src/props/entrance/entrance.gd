@@ -3,6 +3,10 @@ tool
 
 export(PackedScene) var next_level
 
+export(Array, Dictionary) var dialogue = [
+	{ "who": "player", "what": "It won't budge." }
+]
+
 export var locked = false \
 	setget set_lock, is_locked
 
@@ -26,6 +30,4 @@ func interact(p_other: Node) -> void:
 		Transition.change_scene(next_level)
 	else:
 		SoundEffects.play_door_locked()
-		Dialogue.dialog_start([
-			{ "who": "player", "what": "It won't budge" }
-		])
+		Dialogue.dialog_start(dialogue)
