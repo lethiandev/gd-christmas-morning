@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://tileset/furniture/furniture.tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://tileset/workshop/workshop.tileset.tres" type="TileSet" id=2]
@@ -7,6 +7,43 @@
 [ext_resource path="res://props/entrance/entrance.tscn" type="PackedScene" id=5]
 [ext_resource path="res://stages/workshop/workshop_stage.gd" type="Script" id=6]
 [ext_resource path="res://props/switch/switch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://tileset/furniture/furniture.png" type="Texture" id=8]
+[ext_resource path="res://stages/workshop/platform.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 8 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlatformBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "loop"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlatformBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 2.3, 2.7, 4.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 88 ), Vector2( 0, 88 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 496, 240 )
@@ -27,6 +64,31 @@ collision_layer = 4
 collision_mask = 0
 format = 1
 
+[node name="Platform" type="Node2D" parent="."]
+position = Vector2( -208, 88 )
+script = ExtResource( 9 )
+switches = [ NodePath("../Switch"), NodePath("../Switch2"), NodePath("../Switch3") ]
+
+[node name="PlatformBody" type="KinematicBody2D" parent="Platform"]
+collision_layer = 4
+collision_mask = 4
+motion/sync_to_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/PlatformBody"]
+shape = SubResource( 2 )
+one_way_collision = true
+one_way_collision_margin = 2.0
+
+[node name="Sprite" type="Sprite" parent="Platform/PlatformBody"]
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 64, 32, 48, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
+playback_process_mode = 0
+anims/RESET = SubResource( 4 )
+anims/loop = SubResource( 3 )
+
 [node name="Entrance" parent="." instance=ExtResource( 5 )]
 position = Vector2( -416, 160 )
 dialogue = [ {
@@ -40,10 +102,10 @@ position = Vector2( -48, 160 )
 
 [node name="Switch2" parent="." instance=ExtResource( 7 )]
 position = Vector2( -80, 160 )
+enabled = true
 
 [node name="Switch3" parent="." instance=ExtResource( 7 )]
 position = Vector2( -112, 160 )
-enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( -416, 166 )
