@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tileset/workshop/workshop.tileset.tres" type="TileSet" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://stages/bedroom/intro.gd" type="Script" id=8]
 [ext_resource path="res://stages/bedroom/clock_ticking.wav" type="AudioStream" id=9]
 [ext_resource path="res://stages/bedroom/clock_alarm.wav" type="AudioStream" id=10]
+[ext_resource path="res://tileset/background/background.tileset.tres" type="TileSet" id=11]
+[ext_resource path="res://stages/bedroom/background.gd" type="Script" id=12]
+[ext_resource path="res://items/food/food_item.tscn" type="PackedScene" id=13]
+[ext_resource path="res://stages/bedroom/bedroom_stage.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=3]
 resource_name = "intro"
@@ -106,6 +110,7 @@ extents = Vector2( 128, 48 )
 extents = Vector2( 80, 40 )
 
 [node name="BedroomStage" type="Node"]
+script = ExtResource( 14 )
 
 [node name="IntroPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
@@ -114,6 +119,23 @@ anims/intro = SubResource( 3 )
 script = ExtResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="IntroPlayer"]
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = -192.0
+margin_top = -288.0
+margin_right = 192.0
+margin_bottom = 128.0
+color = Color( 0.215686, 0.172549, 0.32549, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="Background"]
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 524292, 5, 0, 524297, 6, 0, 589836, 4, 0, 655368, 4, 0, 720903, 5, 0, 917509, 3, 0, 983057, 5, 0, 1048580, 4, 0, 1048583, 3, 0, 1048585, 7, 0, 1048587, 0, 0, 1179662, 3, 0 )
 
 [node name="Grounds" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -127,15 +149,86 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -327686, 11, 0, -327685, 11, 2, -196614, 11, 0, -196613, 11, 2, -65541, 7, 1, -6, 10, 0, -5, 10, 2, -65534, 10, 0, -65533, 10, 1, -65532, 10, 2, 65529, 3, 0, 65530, 3, 1, 65531, 3, 2, 65532, 6, 0, 0, 1, 0, 1, 7, 0, 131065, 3, 65536, 131066, 3, 65537, 131067, 3, 65538, 131068, 4, 0, 65537, 2, 0, 65538, 2, 2, 65539, 9, 0 )
+tile_data = PoolIntArray( -524296, 6, 0, -524292, 7, 0, -524291, 8, 0, -524290, 536870913, 0, -524289, 3, 0, -589824, 3, 1, -589823, 3, 2, -458760, 5, 0, -458756, 2, 0, -458755, 2, 2, -458753, 3, 65536, -524288, 3, 65537, -524287, 3, 65538, -327686, 11, 0, -327685, 11, 2, -196614, 11, 0, -196613, 11, 2, -65541, 7, 1, -6, 10, 0, -5, 10, 2, -65534, 10, 0, -65533, 10, 1, -65532, 10, 2, 65529, 3, 0, 65530, 3, 1, 65531, 3, 2, 65532, 6, 0, 0, 1, 0, 1, 7, 0, 131065, 3, 65536, 131066, 3, 65537, 131067, 3, 65538, 131068, 4, 0, 65537, 2, 0, 65538, 2, 2, 65539, 9, 0 )
 
 [node name="Entrance" parent="." instance=ExtResource( 6 )]
 position = Vector2( 104, 16 )
 next_level = ExtResource( 7 )
+dialogue = [ {
+"what": "It won't budge.",
+"who": "player"
+} ]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -88, 15 )
-z_index = -1
+
+[node name="Cookies" type="Node" parent="."]
+
+[node name="FoodItem" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 48, -24 )
+
+[node name="FoodItem2" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 56, -24 )
+
+[node name="FoodItem3" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 64, -24 )
+
+[node name="FoodItem4" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 40, 8 )
+
+[node name="FoodItem5" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 40, 0 )
+
+[node name="FoodItem6" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -48, -128 )
+
+[node name="FoodItem7" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -40, -136 )
+
+[node name="FoodItem8" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -32, -128 )
+
+[node name="FoodItem9" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -24, -136 )
+
+[node name="FoodItem10" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -16, -128 )
+
+[node name="FoodItem11" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -32, -144 )
+
+[node name="FoodItem12" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -48, -144 )
+
+[node name="FoodItem13" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -16, -144 )
+
+[node name="FoodItem14" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -112, -128 )
+
+[node name="FoodItem15" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -112, -136 )
+
+[node name="FoodItem16" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -112, -144 )
+
+[node name="FoodItem17" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( -8, -136 )
+
+[node name="FoodItem18" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 0, -128 )
+
+[node name="FoodItem19" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 0, -144 )
+
+[node name="FoodItem20" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 8, -136 )
+
+[node name="FoodItem21" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 16, -144 )
+
+[node name="FoodItem22" parent="Cookies" instance=ExtResource( 13 )]
+position = Vector2( 16, -128 )
 
 [node name="SecretArea" parent="." instance=ExtResource( 4 )]
 
@@ -151,6 +244,7 @@ tile_data = PoolIntArray( -655369, 0, 65537, -655368, 0, 65537, -655367, 0, 6553
 polygon = PoolVector2Array( -96, -48, -96, -112, -128, -112, -128, -160, 32, -160, 32, -112, -64, -112, -64, -48 )
 
 [node name="CameraArea" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea"]
 position = Vector2( 0, -16 )
@@ -163,3 +257,7 @@ position = Vector2( 0, -160 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraArea2"]
 position = Vector2( -48, 24 )
 shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="animation_finished" from="IntroPlayer" to="." method="_on_animation_finished"]

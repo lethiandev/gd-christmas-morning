@@ -5,7 +5,7 @@
 [ext_resource path="res://effects/dust/dust_emitter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/interact.gd" type="Script" id=4]
 [ext_resource path="res://effects/blink/blink.material.tres" type="Material" id=5]
-[ext_resource path="res://player/sound_effects/chew.wav" type="AudioStream" id=7]
+[ext_resource path="res://autoloads/sound_effects/chew.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 10 )
@@ -52,3 +52,6 @@ process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 10.0
 editor_draw_screen = false
+
+[node name="Listener2D" type="Listener2D" parent="Camera2D"]
+current = true

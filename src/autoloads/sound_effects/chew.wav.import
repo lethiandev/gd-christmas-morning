@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/chew.wav-52ec3dd0227a56ccfa1f1537cb57a1b9.sample"
+path="res://.import/chew.wav-bc948505916404a1cb547d47bacb98e3.sample"
 
 [deps]
 
-source_file="res://player/sound_effects/chew.wav"
-dest_files=[ "res://.import/chew.wav-52ec3dd0227a56ccfa1f1537cb57a1b9.sample" ]
+source_file="res://autoloads/sound_effects/chew.wav"
+dest_files=[ "res://.import/chew.wav-bc948505916404a1cb547d47bacb98e3.sample" ]
 
 [params]
 

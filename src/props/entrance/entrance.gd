@@ -1,6 +1,8 @@
 extends Area2D
 tool
 
+signal door_entered()
+
 export(PackedScene) var next_level
 
 export(Array, Dictionary) var dialogue = [
@@ -26,6 +28,7 @@ func interact_leave(p_other: Node) -> void:
 
 func interact(p_other: Node) -> void:
 	if not locked and next_level != null:
+		emit_signal("door_entered")
 		SoundEffects.play_door_transition()
 		Transition.change_scene(next_level)
 	else:

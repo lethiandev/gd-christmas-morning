@@ -13,8 +13,10 @@ func _on_switch_toggled(p_unused = false) -> void:
 func _check_switches() -> void:
 	if _has_switches_enabled():
 		$AnimationPlayer.play("loop")
+		$PlatformBody/GearsAudio2D.play()
 	else:
 		$AnimationPlayer.stop(false)
+		$PlatformBody/GearsAudio2D.stop()
 
 func _has_switches_enabled() -> bool:
 	for switch_node in get_switch_nodes():

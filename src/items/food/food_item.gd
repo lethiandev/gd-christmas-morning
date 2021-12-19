@@ -5,12 +5,11 @@ export var score = 10
 func _ready() -> void:
 	$Tween.start_animation($Sprite)
 
-func interact_eat(p_player: Node2D) -> void:
-	$CollisionShape2D.disabled = true
-	$FollowTarget.follow(p_player)
+func interact_enter(p_other: Node2D) -> void:
+	$FollowTarget.follow(p_other)
 	$Tween.stop_all()
 
 func _on_follow_done(p_player: Node2D):
-	if p_player and p_player.has_method("item_eat"):
-		p_player.item_eat(self)
+	GameState.add_score(10)
+	SoundEffects.play_chew()
 	queue_free()

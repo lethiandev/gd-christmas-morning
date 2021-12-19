@@ -5,3 +5,6 @@ func play_door_transition() -> void:
 
 func play_door_locked() -> void:
 	$DoorLocked.play()
+
+func play_chew() -> void:
+	$Chew.play()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/deck_the_halls.ogg-54b88cc2f1197e984b308b978cd896b4.oggstr"
+
+[deps]
+
+source_file="res://autoloads/music_player/deck_the_halls.ogg"
+dest_files=[ "res://.import/deck_the_halls.ogg-54b88cc2f1197e984b308b978cd896b4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

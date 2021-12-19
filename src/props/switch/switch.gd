@@ -1,6 +1,7 @@
 extends Area2D
 tool
 
+signal switch_changed(enabled)
 signal switch_toggled(enabled)
 signal switch_interacted()
 
@@ -10,6 +11,7 @@ export var enabled = false \
 func set_enable(p_enabled: bool) -> void:
 	$Sprite.frame = 1 if p_enabled else 0
 	enabled = p_enabled
+	emit_signal("switch_changed", enabled)
 
 func is_enabled() -> bool:
 	return enabled
@@ -28,3 +30,7 @@ func interact(p_other: Node) -> void:
 	$SwitchPlayer.play()
 	toggle()
 	emit_signal("switch_interacted")
+
+
+func set_enabled(extra_arg_0):
+	pass # Replace with function body.
